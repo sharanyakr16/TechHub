@@ -1,0 +1,39 @@
+
+<html >
+<head>
+  <title>TechHub</title>
+
+
+</head>
+<body>
+<div class="row" style="text-align: center">
+  <h1><% params[:id] %></h1>
+
+
+  <h1><%= "#{@gadgets_all.find(@parameter).product_id}"" " "#{@gadgets_all.find(@parameter).product_name}" %></h1>
+
+</div>
+
+<% for images in @photos %>
+
+  <div class="item" style="border: solid; background-color: #e6e6e6">
+    <div class="image-box">
+      <p class="image" ><%= image_tag("/assets/#{images.file_name}",height: '350', width: '300') %></p>
+    </div>
+    <div class="comment-box">
+      <p style="font-style: italic">Uploaded on: <%= images.date_time %></p>
+      <% for desc in @descriptions_all.where("photo_id=?",images.id) %>
+        <div class="comment" style="border: solid; font-family: 'Bell MT';background-color: #bdbdbd" >
+          <p style="font-family: 'Bell MT' ">ProductID: <%=link_to "#{@gadgets_all.find(desc.gadget_id).product_id}", "/photos/index/#{@gadgets_all.find(desc.gadget_id).id}" %></p>
+          <p>Description: <%=desc.description_text %></p>
+          <p>Last Updated on: <%=desc.date_time%></p>
+        </div>
+
+      <%end%>
+
+    </div>
+  </div>
+<%end%>
+
+</body>
+</html>

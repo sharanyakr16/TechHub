@@ -1,0 +1,35 @@
+
+
+<html >
+<head>
+  <title>TechHub</title>
+
+</head>
+<body>
+<div class="row" style="text-align: center">
+
+  <h1>Gadgets List</h1>
+  <h2>There are <%= @gadgets_all.count %> products</h2>
+
+</div>
+<div class="table-items">
+
+
+  <table style="border: solid; font-family: 'Bell MT';background-color: #bdbdbd; font-size: larger">
+    <tr >
+      <td style="width: 80px">ID</td>
+      <td style="width: 100px">GadgetID</td>
+      <td style="width: 100px">GadgetName</td>
+    </tr>
+    <% for gadget in @gadgets_all %>
+
+      <tr style="height: 50px">
+        <td><%= gadget.id %></td>
+        <td><%=link_to "#{gadget.product_id}", "/photos/index/#{gadget.id}" %></td>
+        <td><%= gadget.product_name %></td>
+      </tr>
+    <%end%>
+  </table>
+</div>
+</body>
+</html>
